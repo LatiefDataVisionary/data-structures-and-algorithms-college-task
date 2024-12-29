@@ -1,0 +1,155 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+
+// Struct utk data alamat
+struct Alamat {
+    char dusun[50];
+    char rt_rw[10];
+    char kel_desa[30];
+    char kecamatan[20];
+    char kabupaten[20];
+    char provinsi[50];
+};
+
+// Struct utk data KTP
+struct KTP {
+    char nik[50];
+    char nama[50];
+    char tempat_lahir[90];
+    char tgl_lahir[90]; // Diubah menjadi 11 untuk menyertakan null terminator
+    char jenis_kelamin[90];
+    char agama[90];
+    char status_perkawinan[90];
+    char pekerjaan[90];
+    char kewarganegaraan[90];
+    struct Alamat alamat;
+};
+
+// Fungsi utk nginput data alamat
+struct Alamat input_alamat_data() {
+    struct Alamat alamat;
+
+    printf("\n\t\t===Silahkan Masukkan Data Alamat===\n");
+    printf("\t\tMasukkan Dusun: ");
+    fgets(alamat.dusun, sizeof(alamat.dusun), stdin);
+    alamat.dusun[strcspn(alamat.dusun, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    printf("\t\tMasukkan RT/RW: ");
+    fgets(alamat.rt_rw, sizeof(alamat.rt_rw), stdin);
+    alamat.rt_rw[strcspn(alamat.rt_rw, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    printf("\t\tMasukkan Kelurahan/Desa: ");
+    fgets(alamat.kel_desa, sizeof(alamat.kel_desa), stdin);
+    alamat.kel_desa[strcspn(alamat.kel_desa, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    printf("\t\tMasukkan Kecamatan: ");
+    fgets(alamat.kecamatan, sizeof(alamat.kecamatan), stdin);
+    alamat.kecamatan[strcspn(alamat.kecamatan, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    printf("\t\tMasukkan Kabupaten: ");
+    fgets(alamat.kabupaten, sizeof(alamat.kabupaten), stdin);
+    alamat.kabupaten[strcspn(alamat.kabupaten, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    printf("\t\tMasukkan Provinsi: ");
+    fgets(alamat.provinsi, sizeof(alamat.provinsi), stdin);
+    alamat.provinsi[strcspn(alamat.provinsi, "\n")] = 0; // Menghilangkan karakter newline jika ada
+
+    return alamat;
+}
+
+//// Fungsi untuk memeriksa format tanggal yang valid (YYYY-MM-DD)
+//    bool is_valid_date_format(const char *date) {
+//    int year, month, day;
+//    return sscanf(date, "%d-%d-%d", &year, &month, &day) == 3;
+//}
+
+bool is_valid_birthdate_format(const char *date) {
+    //  pemeriksaan format tanggal lahir di sini
+    return true;
+}
+
+
+// Fungsi utk nginput data KTP
+struct KTP input_ktp_data() {
+    struct KTP ktp;
+
+    printf("\n===Silahkan Masukkan Data KTP===\n");
+    printf("*Silahkan aktifkan CapsLock Anda untuk menghasilkan output huruf kapital\n");
+    printf("Masukkan NIK: ");
+    fgets(ktp.nik, sizeof(ktp.nik), stdin);
+    ktp.nik[strcspn(ktp.nik, "\n")] = 0;
+
+    printf("Masukkan Nama: ");
+    fgets(ktp.nama, sizeof(ktp.nama), stdin);
+    ktp.nama[strcspn(ktp.nama, "\n")] = 0;
+
+    printf("Masukkan Tempat Lahir: ");
+    fgets(ktp.tempat_lahir, sizeof(ktp.tempat_lahir), stdin);
+    ktp.tempat_lahir[strcspn(ktp.tempat_lahir, "\n")] = 0;
+    printf("*Silahkan masukkan tanggal yg sesuai\n");
+    printf("dg format yg tersedia agar tdk error/bug (ex. 18 OKT 2004)\n");
+    // Input tanggal lahir
+    do {
+        printf("Masukkan Tanggal Lahir (DD MMM YYYY): ");
+        fgets(ktp.tgl_lahir, sizeof(ktp.tgl_lahir), stdin);
+        ktp.tgl_lahir[strcspn(ktp.tgl_lahir, "\n")] = 0;
+    } while (!is_valid_birthdate_format(ktp.tgl_lahir));
+
+    // Input jenis kelamin
+    printf("Masukkan Jenis Kelamin: ");
+    fgets(ktp.jenis_kelamin, sizeof(ktp.jenis_kelamin), stdin);
+    ktp.jenis_kelamin[strcspn(ktp.jenis_kelamin, "\n")] = 0;
+
+    printf("Masukkan Agama: ");
+    fgets(ktp.agama, sizeof(ktp.agama), stdin);
+    ktp.agama[strcspn(ktp.agama, "\n")] = 0;
+
+    printf("Masukkan Status Perkawinan: ");
+    fgets(ktp.status_perkawinan, sizeof(ktp.status_perkawinan), stdin);
+    ktp.status_perkawinan[strcspn(ktp.status_perkawinan, "\n")] = 0;
+
+    printf("Masukkan Pekerjaan: ");
+    fgets(ktp.pekerjaan, sizeof(ktp.pekerjaan), stdin);
+    ktp.pekerjaan[strcspn(ktp.pekerjaan, "\n")] = 0;
+
+    printf("Masukkan Kewarganegaraan: ");
+    fgets(ktp.kewarganegaraan, sizeof(ktp.kewarganegaraan), stdin);
+    ktp.kewarganegaraan[strcspn(ktp.kewarganegaraan, "\n")] = 0;
+
+    // Input data alamat
+    ktp.alamat = input_alamat_data();
+
+    return ktp;
+}
+
+int main() {
+
+    struct KTP ktp;
+    ktp = input_ktp_data();
+
+    // utk menampilkan data KTP yg telah diinput
+    printf("\n\n=======DATA KTP:=======\n");
+    printf("NIK                 : %s\n", ktp.nik);
+    printf("Nama                : %s\n", ktp.nama);
+    printf("Tempat Lahir        : %s\n", ktp.tempat_lahir);
+    printf("Tanggal Lahir       : %s\n", ktp.tgl_lahir);
+    printf("Jenis Kelamin       : %s\n", ktp.jenis_kelamin);
+    printf("Agama               : %s\n", ktp.agama);
+    printf("Status Perkawinan   : %s\n", ktp.status_perkawinan);
+    printf("Pekerjaan           : %s\n", ktp.pekerjaan);
+    printf("Kewarganegaraan     : %s\n", ktp.kewarganegaraan);
+    printf("Alamat              :\n");
+    printf("\t\t\t-Dusun            : %s\n", ktp.alamat.dusun);
+    printf("\t\t\t-RT/RW            : %s\n", ktp.alamat.rt_rw);
+    printf("\t\t\t-Kelurahan/Desa   : %s\n", ktp.alamat.kel_desa);
+    printf("\t\t\t-Kecamatan        : %s\n", ktp.alamat.kecamatan);
+    printf("\t\t\t-Kabupaten        : %s\n", ktp.alamat.kabupaten);
+    printf("\t\t\t-Provinsi         : %s\n", ktp.alamat.provinsi);
+
+    return 0;
+}
+
+

@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+// Struct utk data alamat
+struct Alamat {
+    char dusun[50];
+    char rt_rw[10];
+    char kel_desa[30];
+    char kecamatan[20];
+    char kabupaten[20];
+    char provinsi[50];
+};
+
+// Struct utk data KTP
+struct KTP {
+    char nik[50];
+    char nama[50];
+    char tempat_lahir[90];
+    char tgl_lahir[90];
+    char jenis_kelamin[90];
+    char agama[90];
+    char status_perkawinan[90];
+    char pekerjaan[90];
+    char kewarganegaraan[90];
+    struct Alamat alamat;
+};
+
+// Fungsi utk membuat contoh data KTP
+struct KTP buat_ktp_contoh() {
+    struct KTP ktp;
+
+    // Mengisi data KTP contoh
+    strcpy(ktp.nik, "1234567890123456");
+    strcpy(ktp.nama, "LATHIF RAMADHAN");
+    strcpy(ktp.tempat_lahir, "BANTUL");
+    strcpy(ktp.tgl_lahir, "2004-10-18"); // Format: YYYY-MM-DD
+    strcpy(ktp.jenis_kelamin, "Laki-laki");
+    strcpy(ktp.agama, "ISLAM");
+    strcpy(ktp.status_perkawinan, "BELUM KAWIN");
+    strcpy(ktp.pekerjaan, "PELAJAR/MAHASISWA");
+    strcpy(ktp.kewarganegaraan, "WNI");
+
+    // Mengisi contoh data
+    strcpy(ktp.alamat.dusun, "SOGESANDEN S");
+    strcpy(ktp.alamat.rt_rw, "78");
+    strcpy(ktp.alamat.kel_desa, "SRIGADING");
+    strcpy(ktp.alamat.kecamatan, "SANDEN");
+    strcpy(ktp.alamat.kabupaten, "BANTUL");
+    strcpy(ktp.alamat.provinsi, "DAERAH ISTIMEWA YOGYAKARTA");
+
+    return ktp;
+}
+
+int main() {
+    struct KTP ktp;
+
+    ktp = buat_ktp_contoh();
+
+    // Menampilkan data KTP
+    printf("=======DATA KTP=======\n");
+    printf("NIK                 : %s\n", ktp.nik);
+    printf("Nama                : %s\n", ktp.nama);
+    printf("Tempat Lahir        : %s\n", ktp.tempat_lahir);
+    printf("Tanggal Lahir       : %s\n", ktp.tgl_lahir);
+    printf("Jenis Kelamin       : %s\n", ktp.jenis_kelamin);
+    printf("Agama               : %s\n", ktp.agama);
+    printf("Status Perkawinan   : %s\n", ktp.status_perkawinan);
+    printf("Pekerjaan           : %s\n", ktp.pekerjaan);
+    printf("Kewarganegaraan     : %s\n", ktp.kewarganegaraan);
+    printf("Alamat              :\n");
+    printf("\t\t\t-Dusun            : %s\n", ktp.alamat.dusun);
+    printf("\t\t\t-RT/RW            : %s\n", ktp.alamat.rt_rw);
+    printf("\t\t\t-Kelurahan/Desa   : %s\n", ktp.alamat.kel_desa);
+    printf("\t\t\t-Kecamatan        : %s\n", ktp.alamat.kecamatan);
+    printf("\t\t\t-Kabupaten        : %s\n", ktp.alamat.kabupaten);
+    printf("\t\t\t-Provinsi         : %s\n", ktp.alamat.provinsi);
+
+    return 0;
+}
+
