@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void create_queue();
+bool full_queue(int max);
+void enQueue(int data);
+int empty_queue();
+void ambil_queue(int data);
+
+//#define max 10
+int head, tail, empty;
+int queue[20];
+bool penuh;
+
+main()
+{
+    const int max = 5;
+    
+    int data;
+    
+    char jwb;
+
+    create_queue();
+    
+    system ("cls");
+    printf ("\n\t   INPUT DATA ke dalam ANTRIAN\n\n");
+
+    do
+    {
+        penuh=full_queue(max);
+        if (penuh==false) 
+        {
+            printf ("\n input data : ");scanf("%f",&data);
+            enQueue(data);
+            printf ("\n tersimpan pada urutan ke %2d : \n",tail);
+            printf ("\n\n input data lagi (Y/T): ");scanf("%s",&jwb);
+        }
+        else 
+        {
+            printf ("\n Antrian sudah penuh");
+            jwb = 'T';
+        }
+      } while (jwb =='Y');
+      
+}
+
+void create_queue()
+{
+    //int top;
+    head = 0;
+    tail = 0;
+}
+
+bool full_queue(int max)
+{
+    bool full;
+    full=false;
+    if (tail == max) full=true;
+    return full;
+}
+
+int empty_queue()
+{
+    empty = 0;
+    if (tail == 0) empty = 1;
+    return empty;
+}
+
+
+void enQueue(int data)
+{
+    
+    empty= empty_queue();
+      
+
+    if (empty = 1)
+    {
+        
+        head = 1;
+        tail = 1;
+        queue[tail] = data;
+    }
+    else if (empty == 0)
+    {
+        
+        tail=tail + 1;
+        queue[tail]=data;
+    }
+}
+
+void ambil_queue(int data)
+{
+    int i;
+    if (!empty)
+    {
+        data=queue[head];
+        for (i=head;i>=tail-1;i++) queue[i]=queue[i+1];
+        tail=tail-1;
+    }
+
+}
