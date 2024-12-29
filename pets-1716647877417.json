@@ -1,0 +1,20 @@
+[
+  {
+    "color": "brown",
+    "type": "dog",
+    "size": "nano",
+    "name": "Kirik"
+  },
+  {
+    "color": "white",
+    "type": "chicken",
+    "size": "nano",
+    "name": "Frank-hen-stein"
+  },
+  {
+    "color": "red",
+    "type": "crab",
+    "size": "nano",
+    "name": "Oscar"
+  }
+]
