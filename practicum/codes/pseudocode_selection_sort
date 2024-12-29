@@ -1,0 +1,27 @@
+Algoritm Selection Sort
+Deklarasi
+    x : aray [1..100] of real.
+    Temp : real.
+    i, n, j, min : integer.
+
+Deskripsi
+    input(n).
+    ulang i=1 sampai n dengan melakukan input(x[i]).
+    i <-- 1
+    Selama i < n lakukan:
+    {
+        min <-- i
+        j <-- i + 1;
+        selama j <= n lakukan:
+            Jika x[j] < x[min] maka min <-- j
+            j <-- j +1
+        }
+        Jika min <> i maka
+        {
+            temp <-- x[min]
+            x[min] <-- x[i]
+            x[i] <-- temp
+        }
+    i <-- i + 1
+    }
+ulang i=1 sampai n dengan melakukan output (x[i])
